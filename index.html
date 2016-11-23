@@ -32,7 +32,7 @@
 
         <!-- <script src="http://debug1.build.phonegap.com/target/target-script-min.js#93c97cea-b19c-11e6-8d5e-0e52a728fe6a"></script> -->
         <script src="http://192.168.1.30:8080/target/target-script-min.js#anonymous"></script>
-        
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
@@ -42,6 +42,13 @@
       <div class="device_selection">
           <input type="button" onclick="listAvailableDevice( 'list_device' );" value="Scan device">
           <div id="list_device">
+          </div>
+          <br>
+          <div>
+            <input type="number" min="0" max="255" value="10" id="red">
+            <input type="number" min="0" max="255" value="10" id="green">
+            <input type="number" min="0" max="255" value="10" id="blue">
+            <input type="button" value="Send color" onclick="getAndSend()">
           </div>
       </div>
     </body>

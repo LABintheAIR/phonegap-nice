@@ -19,6 +19,8 @@ function timeoutTask( msec ){
   setTimeout( timeoutTask(msec), msec );
 };*/
 
+var BLE_data = null;
+
 function scanDevice( cb_newdevice ) {
   ble.scan( [], 5, function(device) {
     console.log( "Device found" );
@@ -34,6 +36,27 @@ function listAvailableDevice( id ){
     $('#' + id ).html( $('#' + id ).html() + "<br><a href=\"connectDevice('" + d.id + "')\">" + d.name + "</a>" );
   } );
 };
+
+function connectDevice( deviceID ){
+  ble.connect( deviceID, function(data){ BLE_data = data; }, function(){ console.error("Fail to connect"); BLE_data = null; } );
+}
+
+function sendColorToDevice( red, green, blue ){
+  if( BLE_data == null ){
+    return false;
+  }
+
+  var chara = getBLEWriteCharac( BLE_data );
+  var data = new UInt8Array(6);
+  data[0] = 0x21; // '!'
+  data[1] = 0x43; // 'C'
+  data[2] = red;
+  data[3] = green;
+  data[4] = blue;
+  data[5] = 0x04;
+
+  ble.write( BLE_data.id, charac.service, charac.characteristic, data.buffer, function() { console.log("Data sent"); }, function() { console.error("Fail send data !"); } );
+}
 
 function getBLEWriteCharac( peripheralData ) {
   var tab = peripheralData.characteristics;
@@ -62,3 +85,11 @@ function getBLEReadCharac( peripheralData ) {
 
   return false;
 };
+
+
+
+
+
+function getAndSend(){
+  sendColorToDevice( parseInt( $("#red").val(), 10 ), parseInt( $("#green").val(), 10 ), parseInt( $("#blue").val(), 10 ) );
+}
