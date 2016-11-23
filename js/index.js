@@ -44,4 +44,32 @@ var app = {
         console.warning( "Failed to scan or device disconnected" );
       });
     },
+
+    getBLEWriteCharac : function( peripheralData ) {
+      var tab = peripheralData.characteristics;
+      var patt = new RegExp(/^[a-z0-9]+0001-/i); //See https://learn.adafruit.com/adafruit-feather-32u4-bluefruit-le/uart-service
+
+      for( i = 0; tab.length; ++i )
+      {
+        if( patt.test( tab[i].service ) && tab[i].properties.indexOf( "Write" ) > -1 ) {
+          return tab[i];
+        }
+      }
+
+      return false;
+    },
+
+    getBLEReadCharac : function( peripheralData ) {
+      var tab = peripheralData.characteristics;
+      var patt = new RegExp(/^[a-z0-9]+0001-/i); //See https://learn.adafruit.com/adafruit-feather-32u4-bluefruit-le/uart-service
+
+      for( i = 0; tab.length; ++i )
+      {
+        if( patt.test( tab[i].service ) && tab[i].properties.indexOf( "Read" ) > -1 ) {
+          return tab[i];
+        }
+      }
+
+      return false;
+    },
 };
