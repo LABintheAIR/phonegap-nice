@@ -29,22 +29,24 @@
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <title>Hello World</title>
 
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+
         <!-- <script src="http://debug1.build.phonegap.com/target/target-script-min.js#93c97cea-b19c-11e6-8d5e-0e52a728fe6a"></script> -->
         <script src="http://192.168.1.30:8080/target/target-script-min.js#anonymous"></script>
 
     </head>
     <body>
-        <div class="app">
-            <h1>PhoneGap</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
-        </div>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-            app.initialize();
-        </script>
+
+
+      <div class="device_selection">
+          <input type="button" onclick="listAvailableDevice( 'list_device' );">
+          <div id="list_device">
+          </div>
+      </div>
+
+      <script type="text/javascript">
+          app.initialize();
+      </script>
     </body>
 </html>

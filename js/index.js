@@ -26,12 +26,9 @@ var app = {
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
+        document.addEventListener('deviceready', app.onDeviceReady, false);
     },
-    // deviceready Event Handler
-    //
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicitly call 'app.receivedEvent(...);'
+
     onDeviceReady: function() {
       app.initBackgroundMode();
     },
@@ -41,7 +38,7 @@ var app = {
         "title": "Bag background Job",
         "isPublic": true,
         "text": "Keep your bag alive !",
-        "silent": false
+        "silent": true
       });
       cordova.plugins.backgroundMode.enable();
       cordova.plugins.backgroundMode.onfailure = (error) => { console.error("BACKGROUND TASK : " + error) };
@@ -60,6 +57,13 @@ var app = {
       }, function(){
         console.warning( "Failed to scan or device disconnected" );
       });
+    },
+
+    listAvailableDevice: function( id ){
+      document.getElementById( id ).text = "";
+      app.scanDevice( function( d ){
+        document.getElementById( id ).text = document.getElementById( id ).text + "<br><a href='app.connectDevice(\'" + d.id + "\')'>" + d.name + "</a>"; 
+      } );
     },
 
     getBLEWriteCharac : function( peripheralData ) {
