@@ -24,7 +24,8 @@ function initBackgroundMode(){
 }
 
 function intervalTask(){
-  console.log("Background task");
+  var charac = getBLEReadCharac( BLE_data );
+  ble.write( BLE_data.id, charac.service, charac.characteristic, data.buffer, function(data) { console.log("Their is something"); console.log(data); }, function() { console.error("RIEN"); } );
 }
 
 var BLE_data = null;
