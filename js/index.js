@@ -1,6 +1,7 @@
 function onDeviceReady() {
   //initBackgroundMode();
-};
+}
+
 /*
 function initBackgroundMode(){
   cordova.plugins.backgroundMode.setDefaults({
@@ -28,25 +29,25 @@ function scanDevice( cb_newdevice ) {
   }, function(){
     console.warning( "Failed to scan or device disconnected" );
   });
-};
+}
 
 function listAvailableDevice( id ){
   document.getElementById( id ).text = "";
   scanDevice( function( d ){
     $('#' + id ).html( $('#' + id ).html() + "<br><a href='#' onclick=\"connectDevice('" + d.id + "'); return false;\">" + d.name + "</a>" );
   } );
-};
+}
 
 function connectDevice( deviceID ){
   ble.connect( deviceID, function(data){ BLE_data = data; }, function(){ console.error("Fail to connect"); BLE_data = null; } );
 }
 
 function sendColorToDevice( red, green, blue ){
-  if( BLE_data == null ){
+  if( BLE_data === null ){
     return false;
   }
 
-  var chara = getBLEWriteCharac( BLE_data );
+  var charac = getBLEWriteCharac( BLE_data );
   var data = new Uint8Array(6);
   data[0] = 0x21; // '!'
   data[1] = 0x43; // 'C'
@@ -70,7 +71,7 @@ function getBLEWriteCharac( peripheralData ) {
   }
 
   return false;
-};
+}
 
 function getBLEReadCharac( peripheralData ) {
   var tab = peripheralData.characteristics;
@@ -84,7 +85,7 @@ function getBLEReadCharac( peripheralData ) {
   }
 
   return false;
-};
+}
 
 
 
