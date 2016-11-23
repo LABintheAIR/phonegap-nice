@@ -10,7 +10,7 @@ function initBackgroundMode(){
     "text": "Keep your bag alive !",
     "silent": true
   });
-  cordova.plugins.backgroundMode.enable();
+  //cordova.plugins.backgroundMode.enable();
   cordova.plugins.backgroundMode.onfailure = function( error ) { console.error("BACKGROUND TASK : " + error); };
   timeoutTask( 500 );
 }
