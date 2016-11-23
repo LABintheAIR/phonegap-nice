@@ -17,23 +17,11 @@
  * under the License.
  */
 var app = {
-    // Application Constructor
-    initialize: function() {
-        this.bindEvents();
-    },
-    // Bind Event Listeners
-    //
-    // Bind any events that are required on startup. Common events are:
-    // 'load', 'deviceready', 'offline', and 'online'.
-    bindEvents: function() {
-        document.addEventListener('deviceready', app.onDeviceReady, false);
-    },
-
-    onDeviceReady: function() {
+    function onDeviceReady() {
       app.initBackgroundMode();
     },
 
-    initBackgroundMode : function(){
+    function initBackgroundMode(){
       cordova.plugins.backgroundMode.setDefaults({
         "title": "Bag background Job",
         "isPublic": true,
@@ -45,12 +33,12 @@ var app = {
       app.timeoutTask( 500 );
     },
 
-    timeoutTask : function( msec ){
+    function timeoutTask( msec ){
       console.log("Background task");
       setTimeout( app.timeoutTask(msec), msec );
     },
 
-    scanDevice: function( cb_newdevice ) {
+    function scanDevice( cb_newdevice ) {
       ble.scan( [], 5, function(device) {
         console.log( "Device found" );
         cb_newdevice( device );
@@ -59,14 +47,14 @@ var app = {
       });
     },
 
-    listAvailableDevice: function( id ){
+    function listAvailableDevice( id ){
       document.getElementById( id ).text = "";
       app.scanDevice( function( d ){
-        document.getElementById( id ).text = document.getElementById( id ).text + "<br><a href='app.connectDevice(\'" + d.id + "\')'>" + d.name + "</a>"; 
+        document.getElementById( id ).text = document.getElementById( id ).text + "<br><a href='app.connectDevice(\'" + d.id + "\')'>" + d.name + "</a>";
       } );
     },
 
-    getBLEWriteCharac : function( peripheralData ) {
+    function getBLEWriteCharac( peripheralData ) {
       var tab = peripheralData.characteristics;
       var patt = new RegExp(/^[a-z0-9]+0001-/i); //See https://learn.adafruit.com/adafruit-feather-32u4-bluefruit-le/uart-service
 
@@ -80,7 +68,7 @@ var app = {
       return false;
     },
 
-    getBLEReadCharac : function( peripheralData ) {
+    function getBLEReadCharac( peripheralData ) {
       var tab = peripheralData.characteristics;
       var patt = new RegExp(/^[a-z0-9]+0001-/i); //See https://learn.adafruit.com/adafruit-feather-32u4-bluefruit-le/uart-service
 
@@ -93,4 +81,3 @@ var app = {
 
       return false;
     },
-};
