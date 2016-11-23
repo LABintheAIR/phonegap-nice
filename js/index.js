@@ -36,10 +36,10 @@ var app = {
         app.receivedEvent('deviceready');
     },
 
-    scanDevice: function() {
+    scanDevice: function( cb_newdevice ) {
       ble.scan( [], 5, function(device) {
-        console.log( "new device : " );
-        console.log( device );
+        console.log( "Device found" );
+        cb_newdevice( device );
       }, function(){
         console.warning( "Failed to scan or device disconnected" );
       });
