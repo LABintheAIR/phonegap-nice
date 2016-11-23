@@ -4,15 +4,15 @@ function onDeviceReady() {
 
 
 function initBackgroundMode(){
-  cordova.plugins.backgroundMode.setDefaults({
+  /*cordova.plugins.backgroundMode.setDefaults({
     "title": "Bag background Job",
     "isPublic": true,
     "text": "Keep your bag alive !",
     "silent": true
-  });
-  //cordova.plugins.backgroundMode.enable();
-  cordova.plugins.backgroundMode.onfailure = function( error ) { console.error("BACKGROUND TASK : " + error); };
-  timeoutTask( 500 );
+  });*/
+  cordova.plugins.backgroundMode.enable();
+  //cordova.plugins.backgroundMode.onfailure = function( error ) { console.error("BACKGROUND TASK : " + error); };
+  timeoutTask( 1000 );
 }
 
 function timeoutTask( msec ){
