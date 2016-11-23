@@ -50,7 +50,7 @@ var app = {
 
     timeoutTask : function( msec ){
       console.log("Background task");
-      setTimeout( timeoutTask(msec), msec );
+      setTimeout( app.timeoutTask(msec), msec );
     },
 
     scanDevice: function( cb_newdevice ) {
