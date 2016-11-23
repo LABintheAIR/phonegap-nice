@@ -31,7 +31,7 @@ function scanDevice( cb_newdevice ) {
 function listAvailableDevice( id ){
   document.getElementById( id ).text = "";
   scanDevice( function( d ){
-    document.getElementById( id ).text = document.getElementById( id ).text + "<br><a href='connectDevice(\'" + d.id + "\')'>" + d.name + "</a>";
+    $('#' + id ).text( $('#' + id ).text() + "<br><a href='connectDevice(\'" + d.id + "\')'>" + d.name + "</a>" );
   } );
 };
 

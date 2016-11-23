@@ -32,14 +32,15 @@
 
         <!-- <script src="http://debug1.build.phonegap.com/target/target-script-min.js#93c97cea-b19c-11e6-8d5e-0e52a728fe6a"></script> -->
         <script src="http://192.168.1.30:8080/target/target-script-min.js#anonymous"></script>
-
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
 
     </head>
     <body onload="onDeviceReady()">
       <div class="device_selection">
-          <input type="button" onclick="app.listAvailableDevice( 'list_device' );" value="Scan device">
+          <input type="button" onclick="listAvailableDevice( 'list_device' );" value="Scan device">
           <div id="list_device">
           </div>
       </div>
