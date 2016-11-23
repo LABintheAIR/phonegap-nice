@@ -47,7 +47,7 @@ function sendColorToDevice( red, green, blue ){
   }
 
   var chara = getBLEWriteCharac( BLE_data );
-  var data = new UInt8Array(6);
+  var data = new Uint8Array(6);
   data[0] = 0x21; // '!'
   data[1] = 0x43; // 'C'
   data[2] = red;
