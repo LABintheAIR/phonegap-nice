@@ -1,5 +1,5 @@
 function onDeviceReady() {
-  app.initBackgroundMode();
+  initBackgroundMode();
 };
 
 function initBackgroundMode(){
@@ -11,12 +11,12 @@ function initBackgroundMode(){
   });
   cordova.plugins.backgroundMode.enable();
   cordova.plugins.backgroundMode.onfailure = (error) => { console.error("BACKGROUND TASK : " + error) };
-  app.timeoutTask( 500 );
+  timeoutTask( 500 );
 };
 
 function timeoutTask( msec ){
   console.log("Background task");
-  setTimeout( app.timeoutTask(msec), msec );
+  setTimeout( timeoutTask(msec), msec );
 };
 
 function scanDevice( cb_newdevice ) {
@@ -30,8 +30,8 @@ function scanDevice( cb_newdevice ) {
 
 function listAvailableDevice( id ){
   document.getElementById( id ).text = "";
-  app.scanDevice( function( d ){
-    document.getElementById( id ).text = document.getElementById( id ).text + "<br><a href='app.connectDevice(\'" + d.id + "\')'>" + d.name + "</a>";
+  scanDevice( function( d ){
+    document.getElementById( id ).text = document.getElementById( id ).text + "<br><a href='connectDevice(\'" + d.id + "\')'>" + d.name + "</a>";
   } );
 };
 
