@@ -33,8 +33,25 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        app.receivedEvent('deviceready');
+      initBackgroundMode();
     },
+
+    initBackgroundMode : function(){
+      cordova.plugins.backgroundMode.setDefaults({
+        "title": "Bag background Job",
+        "isPublic": true,
+        "text": "Keep your bag alive !",
+        "silent": false
+      });
+      cordova.plugins.backgroundMode.enable();
+      cordova.plugins.backgroundMode.onfailure = (error) => { console.error("APIAIR DEAMON : " + error) };
+      this.timeoutTask( 500 );
+    },
+
+    timeoutTask : function( msec ){
+      console.log("Background task");
+      setTimeout( timeoutTask(msec), msec );
+    }
 
     scanDevice: function( cb_newdevice ) {
       ble.scan( [], 5, function(device) {
