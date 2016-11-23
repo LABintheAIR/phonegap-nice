@@ -1,8 +1,8 @@
 function onDeviceReady() {
-  //initBackgroundMode();
+  initBackgroundMode();
 }
 
-/*
+
 function initBackgroundMode(){
   cordova.plugins.backgroundMode.setDefaults({
     "title": "Bag background Job",
@@ -11,14 +11,14 @@ function initBackgroundMode(){
     "silent": true
   });
   cordova.plugins.backgroundMode.enable();
-  cordova.plugins.backgroundMode.onfailure = (error) => { console.error("BACKGROUND TASK : " + error) };
+  cordova.plugins.backgroundMode.onfailure = function( error ) { console.error("BACKGROUND TASK : " + error); };
   timeoutTask( 500 );
-};
+}
 
 function timeoutTask( msec ){
   console.log("Background task");
   setTimeout( timeoutTask(msec), msec );
-};*/
+}
 
 var BLE_data = null;
 
