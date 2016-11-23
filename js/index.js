@@ -1,7 +1,7 @@
 function onDeviceReady() {
-  initBackgroundMode();
+  //initBackgroundMode();
 };
-
+/*
 function initBackgroundMode(){
   cordova.plugins.backgroundMode.setDefaults({
     "title": "Bag background Job",
@@ -17,7 +17,7 @@ function initBackgroundMode(){
 function timeoutTask( msec ){
   console.log("Background task");
   setTimeout( timeoutTask(msec), msec );
-};
+};*/
 
 function scanDevice( cb_newdevice ) {
   ble.scan( [], 5, function(device) {
