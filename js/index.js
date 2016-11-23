@@ -44,7 +44,7 @@ var app = {
         "silent": false
       });
       cordova.plugins.backgroundMode.enable();
-      cordova.plugins.backgroundMode.onfailure = (error) => { console.error("APIAIR DEAMON : " + error) };
+      cordova.plugins.backgroundMode.onfailure = (error) => { console.error("BACKGROUND TASK : " + error) };
       app.timeoutTask( 500 );
     },
 
