@@ -1,7 +1,14 @@
+function initialize() {
+    this.bindEvents();
+}
+
+function bindEvents() {
+    document.addEventListener('deviceready', this.onDeviceReady, false);
+}
+
 function onDeviceReady() {
   initBackgroundMode();
 }
-
 
 function initBackgroundMode(){
   cordova.plugins.backgroundMode.setDefaults({
@@ -12,6 +19,7 @@ function initBackgroundMode(){
   });
   cordova.plugins.backgroundMode.enable();
   cordova.plugins.backgroundMode.onfailure = function( error ) { console.error("BACKGROUND TASK : " + error); };
+  console.log("Background init !");
   setInterval( intervalTask, 1000 );
 }
 
