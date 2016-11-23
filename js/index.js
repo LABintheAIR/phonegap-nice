@@ -51,7 +51,7 @@ var app = {
     timeoutTask : function( msec ){
       console.log("Background task");
       setTimeout( timeoutTask(msec), msec );
-    }
+    },
 
     scanDevice: function( cb_newdevice ) {
       ble.scan( [], 5, function(device) {
