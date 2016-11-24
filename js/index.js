@@ -48,7 +48,7 @@ function connectDevice( deviceID ){
   ble.connect( deviceID, function(data){
     BLE_data = data;
     var charac = getBLEReadCharac( BLE_data );
-    ble.startNotification( BLE_data.id, charac.service, charac.characteristic, function(data) { console.log("Their is something"); console.log(data); }, function() { console.error("RIEN"); } );
+    ble.startNotification( BLE_data.id, charac.service, charac.characteristic, function(data) { console.log("Their is something"); console.log(bytesToString(data)); }, function() { console.error("RIEN"); } );
   },
   function(){ console.error("Fail to connect"); BLE_data = null; } );
 }
@@ -98,6 +98,10 @@ function getBLEReadCharac( peripheralData ) {
   return false;
 }
 
+// ASCII only
+function bytesToString(buffer) {
+    return String.fromCharCode.apply(null, new Uint8Array(buffer));
+}
 
 
 
