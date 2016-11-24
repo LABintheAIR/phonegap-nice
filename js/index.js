@@ -20,6 +20,7 @@ function initBackgroundMode(){
   cordova.plugins.backgroundMode.enable();
   cordova.plugins.backgroundMode.onfailure = function( error ) { console.error("BACKGROUND TASK : " + error); };
   console.log("Background init !");
+  getAirQuality();
   setInterval( intervalTask, 1000 );
 }
 
