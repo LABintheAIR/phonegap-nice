@@ -87,7 +87,7 @@ function getBLEReadCharac( peripheralData ) {
 
   for( i = 0; tab.length; ++i )
   {
-    if( patt.test( tab[i].service ) && tab[i].properties.indexOf( "Read" ) > -1 ) {
+    if( patt.test( tab[i].service ) && tab[i].properties.indexOf( "Notify" ) > -1 ) {
       return tab[i];
     }
   }
