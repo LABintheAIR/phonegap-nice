@@ -24,8 +24,6 @@ function initBackgroundMode(){
 }
 
 function intervalTask(){
-  var charac = getBLEReadCharac( BLE_data );
-  ble.read( BLE_data.id, charac.service, charac.characteristic, function(data) { console.log("Their is something"); console.log(data); }, function() { console.error("RIEN"); } );
 }
 
 var BLE_data = null;
@@ -47,7 +45,12 @@ function listAvailableDevice( id ){
 }
 
 function connectDevice( deviceID ){
-  ble.connect( deviceID, function(data){ BLE_data = data; }, function(){ console.error("Fail to connect"); BLE_data = null; } );
+  ble.connect( deviceID, function(data){
+    BLE_data = data;
+    var charac = getBLEReadCharac( BLE_data );
+    ble.startNotification( BLE_data.id, charac.service, charac.characteristic, function(data) { console.log("Their is something"); console.log(data); }, function() { console.error("RIEN"); } );
+  },
+  function(){ console.error("Fail to connect"); BLE_data = null; } );
 }
 
 function sendColorToDevice( red, green, blue ){
