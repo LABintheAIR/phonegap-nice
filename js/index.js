@@ -119,7 +119,7 @@ function getAirQuality(){
       data : JSON.stringify( { "lat": pos.coords.latitude, "lon": pos.coords.longitude } ),
       dataType: "json",
       contentType: "application/json" } )
-      .done( function( data ){
+      .always( function( data ){
         console.log("done");
         sendAirQualityRequest();
       });
