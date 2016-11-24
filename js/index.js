@@ -103,18 +103,22 @@ function bytesToString(buffer) {
     return String.fromCharCode.apply(null, new Uint8Array(buffer));
 }
 
+function sendAirQualityRequest(){
+  $.ajax( "http://api.labintheair.cc:12345/bag/getLastIndice" ).done( function(data){
+    sendColorToDevice( 255 * 0.01 * data.value, 100 - 255 * 0.01 * data.value, 0 );
+  })
+  .fail( function(){
+    console.error("Fail AJAX");
+  });
+}
 
 function getAirQuality(){
   navigator.geolocation.getCurrentPosition( function( pos ){
-    $.ajax({ type: "POST", url: "http://api.labintheair.cc:12345/bag/sendGPS", data : JSON.stringify( { "lat": pos.coords.latitude, "lon": pos.coords.longitude } ),
-      success: function(){
-        $.ajax( "http://api.labintheair.cc:12345/bag/getLastIndice" ).done( function(data){
-          sendColorToDevice( 255 * 0.01 * data.value, 100 - 255 * 0.01 * data.value, 0 );
-        })
-        .fail( function(){
-
-        });
-      }, dataType: "json",
+    $.ajax({ type: "POST",
+      url: "http://api.labintheair.cc:12345/bag/sendGPS",
+      data : JSON.stringify( { "lat": pos.coords.latitude, "lon": pos.coords.longitude } ),
+      success: sendAirQualityRequest,
+      dataType: "json",
       contentType: "application/json" } );
   },
   function(){ console.error("GPS ERROR"); } );
