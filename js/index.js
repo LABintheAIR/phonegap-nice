@@ -104,6 +104,28 @@ function bytesToString(buffer) {
 }
 
 
+function getAirQuality(){
+  navigator.geolocation.getCurrentPosition( function( pos ){
+    $.post( "http://api.labintheair.cc:12345/bag/sendGPS", { lat: pos.coords.latitude, lon: pos.coords.longitude },
+      function(){
+        $.ajax( "http://api.labintheair.cc:12345/bag/getLastIndice" ).done( function(data){
+          sendColorToDevice( 255 * 0.01 * data.value, 100 - 255 * 0.01 * data.value, 0 );
+        })
+        .fail( function(){
+
+        });
+      });
+  },
+  function(){ console.error("GPS ERROR"); } );
+}
+
+function sendActivity( str ){
+  if( str.length < 2 ){
+    return;
+  }
+  $.post( "http://api.labintheair.cc:12345/bag/sendGPS", { activite: str.substring(0, 2) }, function(){} );
+}
+
 
 
 function getAndSend(){
