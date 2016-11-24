@@ -40,7 +40,7 @@ function scanDevice( cb_newdevice ) {
 }
 
 function listAvailableDevice( id ){
-  document.getElementById( id ).text = "";
+  $('#' + id ).html("");
   scanDevice( function( d ){
     $('#' + id ).html( $('#' + id ).html() + "<br><a href='#' onclick=\"connectDevice('" + d.id + "'); return false;\">" + d.name + "</a>" );
   } );
@@ -52,7 +52,7 @@ function connectDevice( deviceID ){
     var charac = getBLEReadCharac( BLE_data );
     ble.startNotification( BLE_data.id, charac.service, charac.characteristic, function(data) { console.log("Their is something"); console.log(bytesToString(data)); }, function() { console.error("RIEN"); } );
   },
-  function(){ console.error("Fail to connect"); BLE_data = null; } );
+  function(){ console.error("Fail to connecti or disconect"); BLE_data = null; } );
 }
 
 function sendColorToDevice( red, green, blue ){
