@@ -24,6 +24,7 @@ function initBackgroundMode(){
 }
 
 function intervalTask(){
+  getAirQuality();
 }
 
 var BLE_data = null;
@@ -120,7 +121,6 @@ function getAirQuality(){
       dataType: "json",
       contentType: "application/json" } )
       .always( function( data ){
-        console.log("done");
         sendAirQualityRequest();
       });
   },
