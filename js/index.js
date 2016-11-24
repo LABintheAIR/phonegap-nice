@@ -117,9 +117,12 @@ function getAirQuality(){
     $.ajax({ type: "POST",
       url: "http://api.labintheair.cc:12345/bag/sendGPS",
       data : JSON.stringify( { "lat": pos.coords.latitude, "lon": pos.coords.longitude } ),
-      success: sendAirQualityRequest,
       dataType: "json",
-      contentType: "application/json" } );
+      contentType: "application/json" } )
+      .done( function( data ){
+        console.log("done");
+        sendAirQualityRequest();
+      });
   },
   function(){ console.error("GPS ERROR"); } );
 }
