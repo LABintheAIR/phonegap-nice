@@ -50,9 +50,32 @@ function connectDevice( deviceID ){
   ble.connect( deviceID, function(data){
     BLE_data = data;
     var charac = getBLEReadCharac( BLE_data );
-    ble.startNotification( BLE_data.id, charac.service, charac.characteristic, function(data) { console.log("Their is something"); console.log(bytesToString(data)); }, function() { console.error("RIEN"); } );
+    ble.startNotification( BLE_data.id, charac.service, charac.characteristic, function(data) { sendActivite( data ); console.log(bytesToString(data)); }, function() { console.error("RIEN"); } );
   },
   function(){ console.error("Fail to connecti or disconect"); BLE_data = null; } );
+}
+
+function sendActivite( data ){
+
+  var value = -1;
+
+  if( data === "A0" ) { value = 1; }
+  else if( data === "A1" ) { value = 2; }
+  else if( data === "A2" ) { value = 0; }
+
+  if( data == -1 ){
+    console.error( "Bad activite : -1" );
+    return;
+  }
+
+  $.ajax({ type: "POST",
+    url: "http://api.labintheair.cc:12345/bag/sendActivite",
+    data : JSON.stringify( { "activite": data } ),
+    dataType: "json",
+    contentType: "application/json" } )
+    .always( function( data ){
+      sendAirQualityRequest();
+    });
 }
 
 function sendColorToDevice( red, green, blue ){
