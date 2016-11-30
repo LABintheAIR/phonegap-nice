@@ -21,7 +21,7 @@ function initBackgroundMode(){
   cordova.plugins.backgroundMode.onfailure = function( error ) { console.error("BACKGROUND TASK : " + error); };
   console.log("Background init !");
   getAirQuality();
-  setInterval( intervalTask, 1000 );
+  setInterval( intervalTask, 5000 );
 }
 
 function intervalTask(){
@@ -70,7 +70,7 @@ function sendActivite( data ){
 
   $.ajax({ type: "POST",
     url: "http://api.labintheair.cc:12345/bag/sendActivite",
-    data : JSON.stringify( { "activite": data } ),
+    data : JSON.stringify( { "activite": value } ),
     dataType: "json",
     contentType: "application/json" } )
     .always( function( data ){
