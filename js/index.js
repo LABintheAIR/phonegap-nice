@@ -59,6 +59,7 @@ function sendActivite( data ){
 
   var value = -1;
 
+  console.log(data);
   if( data === "A0" ) { value = 1; }
   else if( data === "A1" ) { value = 2; }
   else if( data === "A2" ) { value = 0; }
