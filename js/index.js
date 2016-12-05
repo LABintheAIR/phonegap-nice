@@ -70,7 +70,7 @@ function sendActivite( data ){
 
   $.ajax({ type: "POST",
     url: "http://api.labintheair.cc:12345/bag/sendActivite",
-    data : JSON.stringify( { "activite": value } ),
+    data : JSON.stringify( { "activite":  value.toString() } ),
     dataType: "json",
     contentType: "application/json" } )
     .always( function( data ){
