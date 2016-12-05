@@ -63,7 +63,7 @@ function sendActivite( data ){
   else if( data === "A1" ) { value = 2; }
   else if( data === "A2" ) { value = 0; }
 
-  if( data == -1 ){
+  if( value == -1 ){
     console.error( "Bad activite : -1" );
     return;
   }
