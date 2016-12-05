@@ -52,7 +52,7 @@ function connectDevice( deviceID ){
     var charac = getBLEReadCharac( BLE_data );
     ble.startNotification( BLE_data.id, charac.service, charac.characteristic, function(data) { sendActivite( data ); console.log(bytesToString(data)); }, function() { console.error("RIEN"); } );
   },
-  function(){ console.error("Fail to connecti or disconect"); BLE_data = null; } );
+  function(){ console.error("Fail to connect or disconect"); BLE_data = null; } );
 }
 
 function sendActivite( data ){
