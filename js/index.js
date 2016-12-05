@@ -61,7 +61,7 @@ function sendActivite( data ){
 
   console.log(data);
   data = bytesToString( data );
-  console.log(data);
+  console.log("Byte to String : " + data);
 
   if( data === "A0" ) { value = 1; }
   else if( data === "A1" ) { value = 2; }
