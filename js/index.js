@@ -50,7 +50,7 @@ function connectDevice( deviceID ){
   ble.connect( deviceID, function(data){
     BLE_data = data;
     var charac = getBLEReadCharac( BLE_data );
-    ble.startNotification( BLE_data.id, charac.service, charac.characteristic, function(data) { sendActivite( data ); console.log(bytesToString(data)); }, function() { console.error("RIEN"); } );
+    ble.startNotification( BLE_data.id, charac.service, charac.characteristic, function(data) { sendActivite( data ); }, function() { console.error("RIEN"); } );
   },
   function(){ console.error("Fail to connect or disconect"); BLE_data = null; } );
 }
@@ -62,7 +62,7 @@ function sendActivite( data ){
   console.log(data);
   data = bytesToString( data );
   console.log(data);
-  
+
   if( data === "A0" ) { value = 1; }
   else if( data === "A1" ) { value = 2; }
   else if( data === "A2" ) { value = 0; }
